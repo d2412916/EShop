@@ -41,5 +41,5 @@ app.use((error, req, res, next) => {
 
 // khoi dong web server
 app.listen(port, () => {
-    console.log(`server is running on port localhost:${port}`);
+    console.log(`server is running on port http://localhost:${port}`);
 });
