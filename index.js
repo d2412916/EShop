@@ -42,6 +42,7 @@ app.use(express.urlencoded({ extended: false }));
 // cau hinh su dung session
 app.use(session({
     secret: process.env.SESSION_SECRET,
+    store: new redisStore({ client: redisClient }),
     resave: false,
     saveUninitialized: false,
     cookie: {
