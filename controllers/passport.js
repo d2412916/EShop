@@ -42,7 +42,6 @@ passport.use('local-login', new LocalStrategy({
                 return done(null, false, req.flash('loginMessage', 'Email does not exist!'));
             }
             if (!bcrypt.compareSync(password, user.password)) { //neu mat khau khong dung
-                console.log(password + " >>>> " + user.password)
                 return done(null, false, req.flash('loginMessage', 'Invalid Password!'));
             }
             // cho phep dang nhap
