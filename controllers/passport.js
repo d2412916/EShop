@@ -8,13 +8,13 @@ const models = require('../models');
 // ham nay duoc goi khi xac thuc thanh cong va luu thong tin user vao session
 passport.serializeUser((user, done) => {
     done(null, user.id);
-})
+});
 
 // ham duoc goi boi passport.session de lay thong tin cua user tu csdl va dua vao req.user
 passport.deserializeUser(async (id, done) => {
     try {
         let user = await models.User.findOne({
-            attributes: ['id', 'email', 'firstName', 'lastName'],
+            attributes: ['id', 'email', 'firstName', 'lastName', 'mobile', 'isAdmin'],
             where: { id }
         });
         done(null, user);
@@ -41,8 +41,9 @@ passport.use('local-login', new LocalStrategy({
             if (!user) { // neu email chua ton tai
                 return done(null, false, req.flash('loginMessage', 'Email does not exist!'));
             }
-            if (bcrypt.compareSync(password, user.password)) { //neu mat khau khong dung
-                return done(null, false, req.flash('loginMessage', 'Invalid Password'));
+            if (!bcrypt.compareSync(password, user.password)) { //neu mat khau khong dung
+                console.log(password + " >>>> " + user.password)
+                return done(null, false, req.flash('loginMessage', 'Invalid Password!'));
             }
             // cho phep dang nhap
             return done(null, user);

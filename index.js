@@ -64,7 +64,7 @@ app.use((req, res, next) => {
     let Cart = require('./controllers/cart');
     req.session.cart = new Cart(req.session.cart ? req.session.cart : {});
     res.locals.quantity = req.session.cart.quantity;
-    res.locals.isLoggedin = req.isAuthenticated();
+    res.locals.isLoggedIn = req.isAuthenticated();
     next();
 })
 
