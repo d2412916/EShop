@@ -43,6 +43,9 @@ router.post('/register',
     controller.register
 );
 
+router.get('/forgot', controller.showForgotPassword);
+router.post('/forgot', controller.forgotPassword);
+
 
 
 module.exports = router;
