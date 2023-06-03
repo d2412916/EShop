@@ -21,7 +21,7 @@ router.post('/login',
 );
 
 router.get('/logout', controller.logout);
-
+router.post('/register', controller.register);
 
 
 
